@@ -27,12 +27,14 @@ var loginSndShow = document.getElementById('loginSndShow');
 
 var elementQuery = document.querySelector(".inscription #form")
 
+var mediaQuery = window.matchMedia("(max-width: 560px)")
 function myFunction(x) {
     if (x.matches) { // If media query matches
        elementQuery.style.width = "428px"
-    } 
+    } else {
+        elementQuery.style.width = "540px"
+    }
 }
-var mediaQuery = window.matchMedia("max-width: 560px")
 mediaQuery.addListener(myFunction)
 
 function prenomFunction() {

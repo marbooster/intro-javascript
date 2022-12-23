@@ -468,7 +468,7 @@ footer {
 /*****/
 @media screen and  (min-width: 481px) and (max-width: 767px) {
     .slideshow h1 {
-        font-size: 2rem !important;
+        font-size: 1.9rem !important;
     }
     .cadre2 {
         margin-top: 103px !important;
@@ -479,6 +479,9 @@ footer {
 
     footer {
         margin-top: 10px !important;
+        bottom: -1%;
+        left: 11%;
+        position: absolute !important;
     }
 }
 
@@ -572,7 +575,7 @@ footer {
         text-align: center;
         margin-right: 53px;
         margin-top: 136px;
-        position: relative !important;
+        position: relative ;
     }
 }
 
