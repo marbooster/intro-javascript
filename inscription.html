@@ -37,16 +37,17 @@
                 <p class="cadre1-display">Vous aimez jouer ? Notre prochain événement gaming est ouvert aux  réservations.... Places limitées </p>
                <img src="images/1200x768_cdiscount-gaming-promotions-jeux-video-manettes-accessoires-ps4-ps5-jusqu-8-juin.webp" alt="image du slide">
                <p class="button-cadre1-dsiplay">
-                <button class="button-cadre1" class="login-show">Je M'inscris</button>
+                <button class="button-cadre1" class="login-show" id="loginSndShow">Je M'inscris</button>
                </p>
             </div>
         </section>
         <section class="inscription">
             <div id="login-modal">
                 <form action="" id="form" class="animate">
-                    <div class="toggle-login">
-                        <i class="fa fa-times" id="toggle-login-times" aria-hidden="true"></i>
-                    </div>
+                <div class="toggle-login">
+                    <i class="fa fa-times" id="toggle-login-times" aria-hidden="true"></i>
+                </div>
+                  <div id="form-content">
                     <div class="input-control">
                         <label for="prenom" class="text-login">Prénom</label>
                         <input type="text" id="prenom" name="prenom" onblur="prenomFunction()">
@@ -108,8 +109,10 @@
                     <br>
                     <div class="party-checkbox">
                         <label class="checkbox-container"><span class="checkbox-label">J'ai lu et accepté les conditions d'utilisation</span>
-                            <input type="checkbox" checked>
-                            <span class="checkmark"></span>
+                            <input type="checkbox" checked id="conditionChecked">
+                            <span class="checkmark" id="userCondition">
+                                <div class="error"></div>
+                            </span>
                           </label>
                           <label class="checkbox-container"><span class="checkbox-label">Je souhaite etre informé des prochains évenements</span>
                             <input type="checkbox">
@@ -117,8 +120,13 @@
                           </label>
                     </div>
                     <br>
-                        <button type="submit"> C'est parti</button>
-                    </form>
+                        <button type="submit" class="form-inscription-button"> C'est parti</button>
+                  </div>
+                  <div id="form-success">
+                    <p class="form-success-firstParagraph">Merci pour <br>votre inscription</p>
+                    <p><button class="form-success-button" id="closeSuccess">Fermer</button></p>
+                  </div>
+                </form>
             </div>
         </section>
        </main>

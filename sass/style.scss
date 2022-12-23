@@ -9,6 +9,7 @@ $height-slideshow: 600px;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
+
 #body-site {
     margin-left: 80px;
     margin-right: 80px;
@@ -27,7 +28,7 @@ header {
 
     nav {
 
-        margin-left: 70px;
+        margin-left: 60px;
 
         .toggle {
             display: none;
@@ -87,7 +88,7 @@ main {
         p {
            position: absolute;
            bottom: 25%;
-           left: 15%;
+           left: 8%;
         }
         .button-cadre1 {
             position: absolute;
@@ -187,6 +188,7 @@ footer {
         flex-direction: column;
         background-color: white;
         transition: all 0.5s ease;
+        box-shadow: 0 9px 0px 0px white, 0 -9px 0px 0px white, 12px 0 15px -4px rgba(31, 73, 125, 0.8), -12px 0 15px -4px rgba(31, 73, 125, 0.8);
     }
 
     .menu li{
@@ -262,7 +264,7 @@ footer {
             color: red;
             cursor: pointer;
             }
-       button {
+       .form-inscription-button {
         padding: 10px 5px;
         margin-top: 10px;
         margin-left: 94px;
@@ -427,15 +429,95 @@ footer {
         }
       }
 
+    #form-content {
+        display: block;
+    }
+    #form-success {
+        display: none;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        height: 70vh;
+        position: relative;
+
+        .form-success-firstParagraph {
+            font-size: 25px;
+            position: absolute;
+        }
+
+        .form-success-button {
+            padding: 10px 68px;
+            color: white;
+            background-color: red;
+            border: none;
+            border-radius: 4px;
+            margin-top: 367px;
+        }
+    }
     input[type="text"]::placeholder {
-        font: 20px/3 sans-serif;
+        font: 15px/3 sans-serif;
         color: black;
     }
-
+    .borderCondition {
+        border: 3px solid red;
+    }
     }
 
 
 /*****/
+@media screen and  (min-width: 481px) and (max-width: 767px) {
+    .slideshow h1 {
+        font-size: 2rem !important;
+    }
+    .cadre2 {
+        margin-top: 103px !important;
+    }
+    .inscription {
+            margin-bottom: 14px !important;
+     }
+
+    footer {
+        margin-top: 10px !important;
+    }
+}
+
+@media screen and  (min-width: 320px) and (max-width: 480px) { 
+    #body-site {
+        margin-left: 31px;
+        margin-right: 31px;
+    }
+    main .cadre2 img {
+        width: 100% !important;
+        height: auto!important;
+    }
+    .logo {
+        font-size: 2.7rem !important;
+    }
+    main .slideshow h1 {
+        font-size: 2.1rem !important;
+    }
+    .cadre2 {
+        margin-top: 142px !important;
+    }
+    .button-cadre1 {
+        padding: 10px 50px;
+    }
+    .inscription {
+        margin-bottom: -69px !important;
+    }    
+
+    footer {
+        padding: 0 !important;
+        position: relative !important;
+        text-align: center;
+        margin-top: 10px !important;
+        margin-left: 0px !important;
+        margin-right: 6px !important;
+        padding-bottom: 58px !important;
+    }
+
+}
 
 @media screen and (max-width: 768px) {
 
@@ -445,7 +527,7 @@ footer {
     .slideshow h1 {
        top: 0 !important;
        left: 0 !important;
-       font-size: 3rem !important;
+       font-size: 3rem;
        color: black !important;
     }
     .cadre1 {
@@ -453,26 +535,31 @@ footer {
     }
     .cadre2{
         width: 100% !important;
-        margin-top: 162px !important;
+        margin-top: 180px;
     }
 
-    .cadre2 img {
-        height: 375px !important;
+    main .cadre2 img {
+        width: 100%;
+        height: auto;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
     }
 
     .cadre1-display {
         display: block !important;
         text-align: justify;
         margin-bottom: 25px;
+        font-size: 14px;
     }
 
     .button-cadre1 {
-        padding: 8px 25px;
+        padding: 10px 77px;
         background-color: $color-red;
         color: white;
         border: 1px solid $color-red;
         border-radius: 5px;
         text-decoration: none;
+        font-size: 16px;
     }
     .button-cadre1-dsiplay {
         display: block !important;
@@ -482,41 +569,10 @@ footer {
     }
 
     footer {
-        padding: 82px !important;
         text-align: center;
-        margin-left: 126px;
-
+        margin-right: 53px;
+        margin-top: 136px;
+        position: relative !important;
     }
 }
 
-@media screen and (max-width: 650px) {
-    .slideshow h1 {
-        font-size: 2.5rem !important;
-    }
-}
-
-@media screen and (min-width: 480px) and (max-width: 560px) {
-    .slideshow h1 {
-        font-size: 2.2rem !important;
-    }
-}
-
-@media screen and (max-width: 482px) { 
-    .logo {
-        font-size: 2.7rem !important;
-    }
-    .slideshow h1 {
-        font-size: 1.8rem !important;
-    }
-    .cadre2 {
-        margin-top: 106px !important;
-    }
-    .cadre2 img {
-        height: 313px !important;
-    }
-
-    footer {
-        padding: 5px !important;
-        margin-top: -24px;
-    }
-}

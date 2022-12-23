@@ -14,10 +14,28 @@ const nom = document.getElementById('nom')
 const email = document.getElementById('email')
 const date = document.getElementById('date')
 const particip = document.getElementById('particip')
+const conditionChecked = document.getElementById('conditionChecked');
+const userCondition = document.getElementById('userCondition');
+const formContent = document.getElementById('form-content');
+const formSuccess = document.getElementById('form-success');
+const closeSuccess = document.getElementById('closeSuccess');
+// Get the modal
+var modal = document.getElementById('login-modal');
+var loginShow = document.getElementById('login-show');
+var toggleLoginTimes = document.getElementById('toggle-login-times');
+var loginSndShow = document.getElementById('loginSndShow');
+
+var elementQuery = document.querySelector(".inscription #form")
+
+function myFunction(x) {
+    if (x.matches) { // If media query matches
+       elementQuery.style.width = "428px"
+    } 
+}
+var mediaQuery = window.matchMedia("max-width: 560px")
+mediaQuery.addListener(myFunction)
 
 function prenomFunction() {
-    let radioChoice = document.querySelector('input[type="radio"]:checked');
-    console.log(radioChoice.value);
     let prenomValue = prenom.value.trim();
    if(prenomValue === "")
    {
@@ -66,7 +84,7 @@ function dateFunction() {
 
     if(dateValue === "")
     {
-        setError(date, "La date est reéquise")
+        setError(date, "La date est réquise")
     } else {
         setSuccess(date);
     }
@@ -74,7 +92,12 @@ function dateFunction() {
 
 function numberValideFunction() {
     let numberValue = particip.value
-    console.log(numberValue);
+    if(numberValue === "")
+    {
+        setError(particip, "La date est réquise")
+    } else {
+        setSuccess(particip);
+    }
     if(isNaN(numberValue)){
         setError(particip, "Entrer que des nombres");
     }else if(numberValue === "" || numberValue === undefined){
@@ -86,8 +109,21 @@ function numberValideFunction() {
 
 form.addEventListener('submit', e => {
     e.preventDefault();
-    console.log(date.value);
     valideInputs();
+    formContent.style.display="none"
+    formSuccess.style.display="flex"
+    let inputControl = document.querySelectorAll('.input-control');
+    for(i=0; i<inputControl.length; i++)
+    {
+        inputControl[i].classList.remove('error');
+        inputControl[i].classList.remove('success');
+        if(inputControl[i].children[2])
+        {
+            inputControl[i].children[2].innerText = " ";
+        }
+    }
+    form.reset();
+
 });
 
 const setError = (element, message) => {
@@ -119,6 +155,7 @@ let letters = /^[a-zA-Z]+$/;
 const valideInputs = () => {
     const userName = prenom.value.trim();
     const userNameSnd = nom.value.trim();
+    const emailN = email.value.trim();
     if(userName === "") {
         setError(prenom, 'Prénom est requis');
     } else if(!userName.match(letters)){
@@ -140,21 +177,43 @@ const valideInputs = () => {
     }else {
         setSuccess(nom)
     }
-
-   
+    if(emailN === "")
+    {
+        setError(email, 'Email est requis')
+    } else if(!isValidEmail(emailN)) {
+        setError(email, 'Adresse Email Invalide')
+    }else {
+        setSuccess(email)
+    }
+    console.log(conditionChecked.checked);
+    if(conditionChecked.checked === false) {
+        userCondition.classList.add('borderCondition')
+    } else {
+        userCondition.classList.remove('borderCondition')
+    }
 }
 
 
-// Get the modal
-var modal = document.getElementById('login-modal');
-var loginShow = document.getElementById('login-show');
-var toggleLoginTimes = document.getElementById('toggle-login-times');
+
 
 loginShow.addEventListener('click', () => {
     modal.style.display="block"
+    formContent.style.display="block"
+    formSuccess.style.display="none"
 })
 
+loginSndShow.addEventListener('click', () => {
+    modal.style.display="block"
+    formContent.style.display="block"
+    formSuccess.style.display="none"
+})
+
+
 toggleLoginTimes.addEventListener('click', () => {
+    modal.style.display="none"
+})
+
+closeSuccess.addEventListener('click', () => {
     modal.style.display="none"
 })
 
