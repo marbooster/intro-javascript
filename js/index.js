@@ -28,20 +28,34 @@ var loginSndShow = document.getElementById('loginSndShow');
 var elementQuery = document.querySelector(".inscription #form")
 
 var mediaQuery = window.matchMedia("(max-width: 560px)")
-function myFunction(x) {
+var mediaQuery2 = window.matchMedia("(max-width: 480px)")
+let inputControl = document.querySelectorAll('.input-control');
+let inputControlError = document.querySelectorAll('.input-control .error');
+
+
+function myFunctionMediaQuery(x) {
     if (x.matches) {
-       elementQuery.style.width = "428px"
+       elementQuery.style.width = "400px"
     } else {
         elementQuery.style.width = "540px"
     }
 }
-mediaQuery.addListener(myFunction)
+function myFunctionMediaQuery2(x) {
+    if (x.matches) {
+       elementQuery.style.width = "350px"
+    } else {
+        elementQuery2.style.width = "400px"
+    }
+}
+
+mediaQuery.addListener(myFunctionMediaQuery)
+mediaQuery.addListener(myFunctionMediaQuery2)
 
 function prenomFunction() {
     let prenomValue = prenom.value.trim();
    if(prenomValue === "")
    {
-    setError(prenom, 'Prénom est requis');
+    setError(prenom, 'Le prénom est requis');
    } else if(!prenomValue.match(letters)){
     setError(prenom, 'Entrer des lettres. les chiffres ne sont pas autorisés');
    }else if(prenomValue.length < 3)
@@ -57,7 +71,7 @@ function nomFunction() {
     let nomValue = nom.value.trim();
    if(nomValue === "")
    {
-    setError(nom, 'Prénom est requis');
+    setError(nom, 'Le nom est requis');
    } else if(!nomValue.match(letters)){
     setError(nom, 'Entrer des lettres. les chiffres ne sont pas autorisés');
    }else if(nomValue.length < 3)
@@ -73,7 +87,7 @@ function emailFunction() {
     const emailN = email.value.trim();
     if(emailN === "")
     {
-        setError(email, 'Email est requis')
+        setError(email, 'l\'mail est requis')
     } else if(!isValidEmail(emailN)) {
         setError(email, 'Adresse Email Invalide')
     }else {
@@ -96,36 +110,26 @@ function numberValideFunction() {
     let numberValue = particip.value
     if(numberValue === "")
     {
-        setError(particip, "La date est réquise")
+        setError(particip, "Ce champ est réquise")
     } else {
         setSuccess(particip);
     }
     if(isNaN(numberValue)){
         setError(particip, "Entrer que des nombres");
     }else if(numberValue === "" || numberValue === undefined){
-        setError(particip, "Champ requis");
+        setError(particip, "Ce champ requis");
     } else {
         setSuccess(particip)
     }
 }
 
+closeSuccess.addEventListener('click', () => {
+    modal.style.display="none"
+})
+
 form.addEventListener('submit', e => {
     e.preventDefault();
     valideInputs();
-    formContent.style.display="none"
-    formSuccess.style.display="flex"
-    let inputControl = document.querySelectorAll('.input-control');
-    for(i=0; i<inputControl.length; i++)
-    {
-        inputControl[i].classList.remove('error');
-        inputControl[i].classList.remove('success');
-        if(inputControl[i].children[2])
-        {
-            inputControl[i].children[2].innerText = " ";
-        }
-    }
-    form.reset();
-
 });
 
 const setError = (element, message) => {
@@ -136,6 +140,11 @@ const setError = (element, message) => {
     inputControl.classList.add('error');
     inputControl.classList.remove('success')
 
+}
+
+ function displaySuccessMessage(){
+    formContent.style.display="none"
+    formSuccess.style.display="flex"
 }
 
 const setSuccess = element => {
@@ -158,8 +167,10 @@ const valideInputs = () => {
     const userName = prenom.value.trim();
     const userNameSnd = nom.value.trim();
     const emailN = email.value.trim();
+    const numberInput = particip.value.trim();
+    const dateInput = date.value;
     if(userName === "") {
-        setError(prenom, 'Prénom est requis');
+        setError(prenom, 'le prénom est requis');
     } else if(!userName.match(letters)){
         setError(prenom, 'Entrer des lettres. les chiffres ne sont pas autorisés');
     }else if(userName.length < 3)
@@ -170,7 +181,7 @@ const valideInputs = () => {
     }
 
     if(userNameSnd === "") {
-        setError(nom, 'Prénom est requis');
+        setError(nom, 'le nom est requis');
     } else if(!userNameSnd.match(letters)){
         setError(nom, 'Entrer des lettres. les chiffres ne sont pas autorisés');
     }else if(userNameSnd.length < 3)
@@ -181,17 +192,37 @@ const valideInputs = () => {
     }
     if(emailN === "")
     {
-        setError(email, 'Email est requis')
+        setError(email, 'L\'email est requis')
     } else if(!isValidEmail(emailN)) {
         setError(email, 'Adresse Email Invalide')
     }else {
         setSuccess(email)
     }
-    console.log(conditionChecked.checked);
+    if(numberInput === "")
+    {
+        setError(particip, 'Ce champ est requis')
+    } else {
+        setSuccess(email)
+    }
+    if(dateInput === "")
+    {
+        setError(date, 'La date est requise')
+    } else {
+        setSuccess(date)
+    }
     if(conditionChecked.checked === false) {
         userCondition.classList.add('borderCondition')
     } else {
         userCondition.classList.remove('borderCondition')
+    }
+    if(userName !="" && userNameSnd != "" && emailN !="" && dateInput !="" && numberInput !="") {
+       displaySuccessMessage();
+       let inputControl = document.querySelectorAll('.input-control');
+        for(i=0; i<inputControl.length; i++)
+        {
+           inputControl[i].classList.remove('success');
+        }
+        form.reset();
     }
 }
 
@@ -215,9 +246,6 @@ toggleLoginTimes.addEventListener('click', () => {
     modal.style.display="none"
 })
 
-closeSuccess.addEventListener('click', () => {
-    modal.style.display="none"
-})
 
 
 // When the user clicks anywhere outside of the modal, close it
