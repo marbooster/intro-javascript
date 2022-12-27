@@ -239,7 +239,7 @@ footer {
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
     /* Black w/ opacity */
-    padding-top: 60px;
+    padding-top: 30px;
 }
 
 .inscription {
@@ -247,6 +247,7 @@ footer {
     margin: auto;
     margin-bottom: 42px;
     position: relative;
+
     /* Add Zoom Animation */
     .animate {
         -webkit-animation: animatezoom 0.6s;
@@ -275,7 +276,7 @@ footer {
 
     #form {
         width: 40%;
-       margin: auto;
+        margin: auto;
         padding: 45px 45px;
         background: black;
         border-radius: 4px;
@@ -295,6 +296,7 @@ footer {
             color: red;
             cursor: pointer;
         }
+
         .button-party {
             text-align: center;
         }
@@ -335,7 +337,7 @@ footer {
             border-color: #09c372;
         }
 
-       
+
         .input-control.black input {
             border-color: #000 !important;
         }
@@ -349,6 +351,7 @@ footer {
             font-size: 9px;
             height: 13px;
         }
+
         .input-control .blackError {
             color: #000000 !important;
             font-size: 9px;
@@ -540,6 +543,10 @@ footer {
         margin-bottom: 14px !important;
     }
 
+    .inscription #form {
+        width: 75%;
+    }
+
     footer {
         margin-top: 10px !important;
         bottom: -10%;
@@ -551,12 +558,15 @@ footer {
         margin-left: 31px;
         margin-right: 31px;
     }
+
     header {
         padding-top: 20px;
     }
+
     .input-date {
         width: 100% !important;
     }
+
     main .cadre2 img {
         width: 100% !important;
         height: auto !important;
@@ -581,10 +591,12 @@ footer {
     .button-cadre1 {
         padding: 10px 28px !important;
     }
+
     footer {
         margin-top: 10px !important;
         bottom: 10%;
     }
+
     footer p {
         font-size: 13px;
     }
@@ -643,6 +655,9 @@ footer {
         width: 100%;
         margin-top: 42px;
     }
+    .inscription #form {
+        width: 70%;
+    }
 
     footer {
         text-align: center;
@@ -652,5 +667,4 @@ footer {
     }
 }
 
-@media screen and (max-width: 560px) {
-}
+@media screen and (max-width: 560px) {}

@@ -25,10 +25,10 @@ var loginShow = document.getElementById('login-show');
 var toggleLoginTimes = document.getElementById('toggle-login-times');
 var loginSndShow = document.getElementById('loginSndShow');
 
-var elementQuery = document.querySelector(".inscription #form")
+/*var elementQuery = document.querySelector(".inscription #form")
 
 let mediaQuery = window.matchMedia("(max-width: 560px)")
-let mediaQuery2 = window.matchMedia("(max-width: 480px)")
+let mediaQuery2 = window.matchMedia("(max-width: 480px)")*/
 let inputControl = document.querySelectorAll('.input-control');
 let inputControlError = document.querySelectorAll('.input-control .error');
 let prenomControl = document.querySelector('#prenomControl');
@@ -45,7 +45,7 @@ let participError = document.querySelector('#participError');
 
 
 
-function myFunctionMediaQuery(x) {
+/*function myFunctionMediaQuery(x) {
     if (x.matches) {
         elementQuery.style.width = "400px"
     } else {
@@ -61,7 +61,7 @@ function myFunctionMediaQuery2(x) {
 }
 
 mediaQuery.addListener(myFunctionMediaQuery)
-mediaQuery.addListener(myFunctionMediaQuery2)
+mediaQuery.addListener(myFunctionMediaQuery2) */
 
 function prenomFunction() {
     let prenomValue = prenom.value.trim();
