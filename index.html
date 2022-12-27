@@ -48,30 +48,30 @@
                     <i class="fa fa-times" id="toggle-login-times" aria-hidden="true"></i>
                 </div>
                   <div id="form-content">
-                    <div class="input-control">
+                    <div class="input-control" id="prenomControl">
                         <label for="prenom" class="text-login">Prénom</label>
                         <input type="text" id="prenom" name="prenom" onfocusout="prenomFunction()">
-                        <div class="error"></div>
+                        <div class="error"  id="prenomError"></div>
                     </div>
-                    <div class="input-control">
+                    <div class="input-control"  id="nomControl">
                         <label for="nom" class="text-login">Nom</label>
                         <input type="text" id="nom" name="nom" onfocusout="nomFunction()">
-                        <div class="error"></div>
+                        <div class="error"  id="nomError"></div>
                     </div>
-                    <div class="input-control">
+                    <div class="input-control"  id="emailControl">
                         <label for="email" class="text-login">Email</label>
                         <input type="email" id="email" name="email" onfocusout="emailFunction()">
-                        <div class="error"></div>
+                        <div class="error" id="emailError"></div>
                     </div>
-                    <div class="input-control">
+                    <div class="input-control"  id="dateControl">
                         <label for="date_naissance" class="text-login">Date de Naissance</label>
                         <input type="date" id="date" name="date" class="date-input" onfocusout="dateFunction()">
-                        <div class="error"></div>
+                        <div class="error" id="dateError"></div>
                     </div>
-                    <div class="input-control">
+                    <div class="input-control"  id="participControl">
                         <label for="" class="text-login">A combien de tournoi avez-vous deja participé ?</label>
                         <input type="text" id="particip" name="particip" placeholder="19" onfocusout="numberValideFunction()">
-                        <div class="error"></div>
+                        <div class="error"  id="participError"></div>
                     </div>
                     <div class="party-radio">
                        <div>

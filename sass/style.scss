@@ -21,7 +21,6 @@ header {
     align-items: center;
     padding-top: 20px;
     position: sticky;
-    z-index: 300;
 
     h1 {
         font-size: 55px;
@@ -336,7 +335,7 @@ footer {
         }
 
        
-        .input-control.lucien input {
+        .input-control.black input {
             border-color: #000 !important;
         }
 
@@ -346,6 +345,11 @@ footer {
 
         .input-control .error {
             color: #ff3860;
+            font-size: 9px;
+            height: 13px;
+        }
+        .input-control .blackError {
+            color: #000000 !important;
             font-size: 9px;
             height: 13px;
         }
