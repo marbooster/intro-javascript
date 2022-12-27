@@ -18,6 +18,7 @@ header {
   padding-top: 20px;
   position: -webkit-sticky;
   position: sticky;
+  z-index: 1;
 }
 header h1 {
   font-size: 55px;
@@ -56,6 +57,7 @@ main .slideshow {
   border: 1px solid white;
   border-radius: 5px;
   position: relative;
+  z-index: 0;
 }
 main .slideshow h1 {
   position: absolute;
@@ -187,7 +189,7 @@ footer p {
   display: none;
   position: fixed;
   /* Stay in place */
-  z-index: 1;
+  z-index: 200;
   /* Sit on top */
   left: 0;
   top: 0;
