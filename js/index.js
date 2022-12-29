@@ -29,7 +29,7 @@ var loginSndShow = document.getElementById('loginSndShow');
 
 let mediaQuery = window.matchMedia("(max-width: 560px)")
 let mediaQuery2 = window.matchMedia("(max-width: 480px)")*/
-let inputControl = document.querySelectorAll('.input-control');
+let inputControl = document.querySelectorAll('.form-group');
 let inputControlError = document.querySelectorAll('.input-control .error');
 let prenomControl = document.querySelector('#prenomControl');
 let nomControl = document.querySelector('#nomControl');
@@ -43,44 +43,17 @@ let emailError = document.querySelector('#emailError');
 let dateError = document.querySelector('#dateError');
 let participError = document.querySelector('#participError');
 
-
-
-/*function myFunctionMediaQuery(x) {
-    if (x.matches) {
-        elementQuery.style.width = "400px"
-    } else {
-        elementQuery.style.width = "540px"
-    }
-}
-function myFunctionMediaQuery2(x) {
-    if (x.matches) {
-        elementQuery.style.width = "350px"
-    } else {
-        elementQuery.style.width = "400px"
-    }
-}
-
-mediaQuery.addListener(myFunctionMediaQuery)
-mediaQuery.addListener(myFunctionMediaQuery2) */
-
 function prenomFunction() {
     let prenomValue = prenom.value.trim();
     if (prenomValue === "") {
-        prenomError.classList.remove('blackError');
-        prenomControl.classList.remove('black');
+        prenomControl.classList.remove('error');
         setError(prenom, 'Le prénom est requis');
     } else if (!prenomValue.match(letters)) {
-        prenomError.classList.remove('blackError');
-        prenomControl.classList.remove('black');
         setError(prenom, 'Entrer des lettres. les chiffres ne sont pas autorisés');
     } else if (prenomValue.length < 3) {
-        prenomError.classList.remove('blackError');
-        prenomControl.classList.remove('black');
         setError(prenom, 'Vous devez entrer au moins 3 charactères');
     } else {
         prenom.value = prenom.value.replace(/^.{1}/g, prenom.value[0].toUpperCase());
-        prenomError.classList.remove('blackError');
-        prenomControl.classList.remove('black');
         setSuccess(prenom)
     }
 }
@@ -88,22 +61,14 @@ function prenomFunction() {
 function nomFunction() {
     let nomValue = nom.value.trim();
     if (nomValue === "") {
-        nomError.classList.remove('blackError');
-        nomControl.classList.remove('black');
-        setError(nom, 'Le nom est requis');
+        setError2(nom, 'Le nom est requis');
     } else if (!nomValue.match(letters)) {
-        nomError.classList.remove('blackError');
-        nomControl.classList.remove('black');
-        setError(nom, 'Entrer des lettres. les chiffres ne sont pas autorisés');
+        setError2(nom, 'Entrer des lettres. les chiffres ne sont pas autorisés');
     } else if (nomValue.length < 3) {
-        nomError.classList.remove('blackError');
-        nomControl.classList.remove('black');
-        setError(nom, 'Vous devez entrer au moins 3 charactères');
+        setError2(nom, 'Vous devez entrer au moins 3 charactères');
     } else {
         nom.value = nom.value.toUpperCase();
-        nomError.classList.remove('blackError');
-        nomControl.classList.remove('black');
-        setSuccess(nom)
+        setSuccess2(nom)
     }
 }
 
@@ -112,7 +77,7 @@ function emailFunction() {
     if (emailN === "") {
         emailError.classList.remove('blackError');
         emailControl.classList.remove('black');
-        setError(email, 'l\'mail est requis')
+        setError(email, 'L\'e-mail est requis')
     } else if (!isValidEmail(emailN)) {
         emailError.classList.remove('blackError');
         emailControl.classList.remove('black');
@@ -124,20 +89,6 @@ function emailFunction() {
     }
 }
 
-function dateFunction() {
-    let dateValue = date.value.trim();
-
-    if (dateValue === "") {
-        dateError.classList.remove('blackError');
-        dateControl.classList.remove('black');
-        setError(date, "La date est réquise")
-    } else {
-        dateError.classList.remove('blackError');
-        dateControl.classList.remove('black');
-        setSuccess(date);
-    }
-}
-
 function numberValideFunction() {
     let numberValue = particip.value
     if (numberValue === "") {
@@ -145,8 +96,6 @@ function numberValideFunction() {
         participControl.classList.remove('black');
         setError(particip, "Ce champ est réquise")
     } else {
-        participError.classList.remove('blackError');
-        participControl.classList.remove('black');
         setSuccess(particip);
     }
     if (isNaN(numberValue)) {
@@ -166,7 +115,9 @@ function numberValideFunction() {
 
 closeSuccess.addEventListener('click', () => {
     modal.style.display = "none"
+    window.location.reload()
 })
+
 
 form.addEventListener('submit', e => {
     e.preventDefault();
@@ -180,6 +131,16 @@ const setError = (element, message) => {
     errorDisplay.innerText = message;
     inputControl.classList.add('error');
     inputControl.classList.remove('success')
+
+}
+
+const setError2 = (element, message) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error2')
+
+    errorDisplay.innerText = message;
+    inputControl.classList.add('error2');
+    inputControl.classList.remove('success2')
 
 }
 
@@ -198,6 +159,16 @@ const setSuccess = element => {
     inputControl.classList.remove('error')
 }
 
+const setSuccess2 = element => {
+
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error2')
+
+    errorDisplay.innerText = ' ';
+    inputControl.classList.add('success2');
+    inputControl.classList.remove('error2')
+}
+
 const isValidEmail = email => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
@@ -209,86 +180,90 @@ const valideInputs = () => {
     const userNameSnd = nom.value.trim();
     const emailN = email.value.trim();
     const numberInput = particip.value.trim();
-    const dateInput = date.value;
+    //const dateInput = date.value; */
     if (userName === "") {
-        prenomError.classList.remove('blackError');
-        prenomControl.classList.remove('black');
+        prenom.classList.remove('black')
+        prenomError.classList.remove('blackError2')
         setError(prenom, 'le prénom est requis');
     } else if (!userName.match(letters)) {
-        prenomError.classList.remove('blackError');
-        prenomControl.classList.remove('black');
+        prenom.classList.remove('black')
+        prenomError.classList.remove('blackError2')
         setError(prenom, 'Entrer des lettres. les chiffres ne sont pas autorisés');
     } else if (userName.length < 3) {
-        prenomError.classList.remove('blackError');
-        prenomControl.classList.remove('black');
+        prenom.classList.remove('black')
+        prenomError.classList.remove('blackError2')
         setError(prenom, 'Vous devez entrer au moins 3 charactères');
     } else {
-        prenomError.classList.remove('blackError');
-        prenomControl.classList.remove('black');
+        prenom.classList.remove('black')
+        prenomError.classList.remove('blackError2')
         setSuccess(prenom)
     }
 
     if (userNameSnd === "") {
-        nomError.classList.remove('blackError');
-        nomControl.classList.remove('black');
-        setError(nom, 'le nom est requis');
+        nom.classList.remove('black')
+        setError2(nom, 'le nom est requis');
     } else if (!userNameSnd.match(letters)) {
-        nomError.classList.remove('blackError');
-        nomControl.classList.remove('black');
-        setError(nom, 'Entrer des lettres. les chiffres ne sont pas autorisés');
+        setError2(nom, 'Entrer des lettres. les chiffres ne sont pas autorisés');
     } else if (userNameSnd.length < 3) {
-        nomError.classList.remove('blackError');
-        nomControl.classList.remove('black');
-        setError(nom, 'Vous devez entrer au moins 3 charactères');
+        setError2(nom, 'Vous devez entrer au moins 3 charactères');
     } else {
-        nomError.classList.remove('blackError');
-        nomControl.classList.remove('black');
-        setSuccess(nom)
+        setSuccess2(nom)
     }
     if (emailN === "") {
-        emailError.classList.remove('blackError');
-        emailControl.classList.remove('black');
         setError(email, 'L\'email est requis')
     } else if (!isValidEmail(emailN)) {
-        emailError.classList.remove('blackError');
-        emailControl.classList.remove('black');
         setError(email, 'Adresse Email Invalide')
     } else {
-        emailError.classList.remove('blackError');
-        emailControl.classList.remove('black');
         setSuccess(email)
     }
     if (numberInput === "") {
-        participError.classList.remove('blackError');
-        participControl.classList.remove('black');
         setError(particip, 'Ce champ est requis')
     } else {
-        participError.classList.remove('blackError');
-        participControl.classList.remove('black');
         setSuccess(particip)
     }
-    if (dateInput === "") {
-        dateError.classList.remove('blackError');
-        dateControl.classList.remove('black');
-        setError(date, 'La date est requise')
-    } else {
-        dateControl.classList.remove('black');
-        dateControl.classList.remove('black');
-        setSuccess(date)
-    }
+    selectYear();
     if (conditionChecked.checked === false) {
         userCondition.classList.add('borderCondition')
     } else {
         userCondition.classList.remove('borderCondition')
     }
-    if (userName != "" && userNameSnd != "" && emailN != "" && dateInput != "" && numberInput != "") {
+    if (userName != "" && userNameSnd != "" && emailN != "" && numberInput != "") {
         displaySuccessMessage();
-        let inputControl = document.querySelectorAll('.input-control');
+        let inputControl = document.querySelectorAll('.form-group')
+        console.log(inputControl)
         for (i = 0; i < inputControl.length; i++) {
             inputControl[i].classList.remove('success');
             inputControl[i].classList.remove('error');
         }
+        prenomControl.classList.remove('success2')
+        prenomControl.classList.remove('error2')
         form.reset();
+    }
+}
+let jourSelect = document.getElementById('jourSelect');
+let moisSelect = document.getElementById('moisSelect');
+let anneeSelect = document.getElementById('anneeSelect');
+let errorDate = document.querySelector('.errorDate');
+function selectYear() {
+    let date = new Date();
+
+    let age = date.getFullYear() - (+anneeSelect.value);
+    if (age < 10) {
+        jourSelect.classList.remove('lu1');
+        moisSelect.classList.remove('lu1');
+        anneeSelect.classList.remove('lu1');
+        jourSelect.classList.add('lu');
+        moisSelect.classList.add('lu');
+        anneeSelect.classList.add('lu');
+        errorDate.innerText = "Entrer une date valide"
+    } else {
+        errorDate.innerText = ""
+        jourSelect.classList.add('lu1');
+        moisSelect.classList.add('lu1');
+        anneeSelect.classList.add('lu1');
+        jourSelect.classList.remove('lu');
+        moisSelect.classList.remove('lu');
+        anneeSelect.classList.remove('lu');
     }
 }
 
@@ -299,34 +274,56 @@ loginShow.addEventListener('click', () => {
     modal.style.display = "block"
     formContent.style.display = "block"
     formSuccess.style.display = "none"
-    let inputControl = document.querySelectorAll('.input-control');
-    let inputControlError = document.querySelectorAll('.error');
-    for (i = 0; i < inputControl.length; i++) {
-        inputControl[i].classList.add('black');
-        console.log("Marcelin");
-    }
-    for (i = 0; i < inputControlError.length; i++) {
-        inputControlError[i].classList.add('blackError');
-    }
+    /* let inputControl = document.querySelectorAll('.form-group')
+     let inputControlError = document.querySelectorAll('.error')
+     let inputControlError2 = document.querySelector('.error2')
+     console.log(inputControlError2)
+     for (i = 0; i < inputControl.length; i++) {
+         inputControl[i].classList.add('black');
+     }
+     jourSelect.classList.remove('lu1');
+     moisSelect.classList.remove('lu1');
+     anneeSelect.classList.remove('lu1');
+     jourSelect.classList.remove('lu');
+     moisSelect.classList.remove('lu');
+     anneeSelect.classList.remove('lu');
+     inputControlError2.classList.add('blackError');
+     nom.classList.add('borderColord');
+     errorDate.innerText = "";
+     for (i = 0; i < inputControlError.length; i++) {
+         inputControlError[i].classList.add('blackError');
+     }*/
 })
 
 loginSndShow.addEventListener('click', () => {
     modal.style.display = "block"
     formContent.style.display = "block"
     formSuccess.style.display = "none"
-    let inputControl = document.querySelectorAll('.input-control');
-    let inputControlError = document.querySelectorAll('.error');
-    for (i = 0; i < inputControl.length; i++) {
-        inputControl[i].classList.add('black');
-    }
-    for (i = 0; i < inputControlError.length; i++) {
-        inputControlError[i].classList.add('blackError');
-    }
+    /* let inputControl = document.querySelectorAll('.form-group')
+     let inputControlError = document.querySelectorAll('.error')
+     let inputControlError2 = document.querySelector('.error2')
+     for (i = 0; i < inputControl.length; i++) {
+         inputControl[i].classList.add('black');
+     }
+     jourSelect.classList.remove('lu1');
+     moisSelect.classList.remove('lu1');
+     anneeSelect.classList.remove('lu1');
+     jourSelect.classList.remove('lu');
+     moisSelect.classList.remove('lu');
+     anneeSelect.classList.remove('lu');
+     inputControlError2.classList.add('blackError')
+     errorDate.innerText = "";
+     for (i = 0; i < inputControlError.length; i++) {
+         inputControlError[i].classList.add('blackError')
+     }*/
 })
 
 
 toggleLoginTimes.addEventListener('click', () => {
     modal.style.display = "none"
+    jourSelect.classList.remove('lu1');
+    moisSelect.classList.remove('lu1');
+    anneeSelect.classList.remove('lu1');
 })
 
 
